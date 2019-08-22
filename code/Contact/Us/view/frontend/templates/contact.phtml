@@ -1,0 +1,106 @@
+<?php
+	$requestedId =  $block->getQueryStringId();
+?>
+<?php
+	$requestType = array( 1 => "DEVELOPMENT",
+						  2 => "UPGRADE",
+						  3 => "CONFIGURATION",
+						  4 => "INTEGRATION",
+						  5 => "MIGRATION",
+						  6 => "CONSULTATION",
+						  7 => "IMPORT",
+						  8 => "OPTIMIZATION",
+						  9 => "INSTALLATION"
+						);
+
+	
+?>
+
+<div class="container">
+	<div class="col-sm-3">
+		&nbsp;
+	</div>
+	<div class="col-md-6">
+		<form class="form contact" action="contactus/index/post" id="xmage-contact-form" method="post" data-hasrequired="* Required Fields" novalidate="novalidate">
+		    <fieldset class="fieldset">
+		        <legend><h4><span><?= __('Let\'s get to work! Please answer a couple of short questions about you and your project.'); ?></span></h4></legend><br>
+		        
+		        <div class="field name required">
+		            <label class="label" for="name"><span><?= __('Name'); ?></span></label>
+		            <div class="control">
+		                <input name="name" id="name" title="Name" value="" class="input-text" type="text" data-validate="{required:true}" aria-required="true">
+		            </div>
+		        </div>
+		        <div class="field email required">
+		            <label class="label" for="email"><span><?= __('Email'); ?></span></label>
+		            <div class="control">
+		                <input name="email" id="email" title="Email" value="" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}" aria-required="true">
+		            </div>
+		        </div>
+		        <div class="field telephone">
+		            <label class="label" for="telephone"><span><?= __('Phone Number'); ?></span></label>
+		            <div class="control">
+		                <input name="telephone" id="telephone" title="Phone Number" value="" class="input-text" type="text">
+		            </div>
+		        </div>
+		        <div class="field company_name required">
+		            <label class="label" for="company_name"><span><?= __('Company Name'); ?></span></label>
+		            <div class="control">
+		                <input name="company_name" id="company_name" title="Name" value="" class="input-text" type="text" data-validate="{required:true}" aria-required="true">
+		            </div>
+		        </div>
+		        <div class="field budget required">
+		            <label class="label" for="name"><span><?= __('What\'s your budget?'); ?></span></label>
+		            <div class="control">
+		            	<select class="input-select" name="budget" id="budget" title="Budget" data-validate="{required:true}" aria-required="true">
+		            		<option value=""><?= __('what\'s your budget?'); ?></option>
+		            		<option value="$500-$1000"><?= __('$500-$1000'); ?></option>		
+		            		<option value="$1000-$2000"><?= __('$1000-$2000');?></option>
+		            		<option value="over $2000"><?= __('over $2000');?></option>
+		            	</select>
+		            </div>
+		        </div>
+
+
+		        <div class="field time required">
+		            <label class="label" for="name"><span><?= __('What\'s your time frame?'); ?></span></label>
+		            <div class="control">
+		                <input name="time_frame" id="time_frame" title="Time Frame" value="" class="input-text" type="text" data-validate="{required:true}" aria-required="true">
+		            </div>
+		        </div>
+
+		        <div class="field comment required">
+		            <label class="label" for="comment"><span><?= __('Anything else you\'d like us to know?'); ?></span></label>
+		            <div class="control">
+		            	<textarea name="comment" id="comment" title="What’s on your mind?" class="input-text" cols="5" rows="3" data-validate="{required:true}" spellcheck="false" aria-required="true"></textarea>
+		            </div>
+		        </div>
+		            </fieldset>
+		    <div>
+		        <div class="primary">
+		            <input type="hidden" name="requestType" id="requestType" value="<?php 
+		            if(empty($requestedId)){
+						echo "HIRE US";
+					}else{
+						echo $requestType[$requestedId];
+					}
+		             ?>">
+		            <button type="submit" title="Submit" class="action submit primary">
+		                <span><?= __('Submit'); ?></span>
+		            </button>
+		        </div>
+		    </div>
+		</form>
+	</div>
+	<div class="col-sm-3">
+		&nbsp;
+	</div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#xmage-contact-form": {
+            "validation": {}
+        }
+    }
+</script>

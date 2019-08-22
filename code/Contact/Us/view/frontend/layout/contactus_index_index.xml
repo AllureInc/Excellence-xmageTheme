@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	<head>
+        <title>Contact Us</title>
+    </head>
+    <referenceContainer name="content">
+        <block template="Contact_Us::contact.phtml" class="Contact\Us\Block\Contact" name="contact_us" />
+    </referenceContainer>
+</page>

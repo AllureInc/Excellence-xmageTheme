@@ -1,0 +1,73 @@
+<?php
+    $helper        = $this->helper('xMagestore\Theme\Helper\Data');
+    $product       = $helper->getCurrentProduct();
+    $frontendDemo  = $product->getFrontendDemo(); 
+    $backendDemo   = $product->getBackendDemo(); 
+    $adminUsername = $product->getAdminUsername(); 
+    $adminPassword = $product->getAdminPassword(); 
+    $guideLink     = $product->getGuideLink(); 
+?>
+
+<div class="demo-guide-link-section">
+    <div class="row">
+        <div class="col-md-3 col-sm-12">
+            <a href="#"><p id="open-demo-popup"><strong><i class="fa fa-caret-right right-triangle"> <?= __("Demo") ?> </i></strong></p></a>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <a href="<?= __($guideLink) ?>" target="_blank">
+                <p id="open-guide-popup"><strong><i class="fa fa-caret-right right-triangle"> <?= __("Guide") ?> </i></strong></p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Demo Popup Content -->
+<div id="popup-demo-modal" style="display: none;">
+    <div class="popup-middle-content">
+        <div class="col-md-12 col-sm-12 frontend-content-link">
+            <a href="<?= __($frontendDemo) ?>" target="_blank"><span class="frontend-demo"><strong> <?= __("Frontend Demo") ?> </strong></span></a>
+        </div>
+        <hr>
+        <div class="col-md-12 col-sm-12 backend-content-link">
+            <a href="<?= __($backendDemo) ?>" target="_blank"><span class="backend-demo"><strong> <?= __("Backend Demo") ?> </strong></span></a>
+        </div>
+
+        <div class="admin-credentials">
+            <h4><?= __("ADMIN LOGIN CREDENTIALS") ?></h4>
+            <div class="col-md-12 col-sm-12 admin-username-para">
+                <p class="admin-username"><span class="label"><?= __("Admin Username : ") ?> </span> <?= __($adminUsername) ?></p>
+            </div>
+            <div class="col-md-12 col-sm-12 admin-password-para">
+                <p class="admin-password"><span class="label"><?= __("Admin Password : ") ?> </span> <?= __($adminPassword) ?></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+require(
+    [
+        'jquery',
+        'Magento_Ui/js/modal/modal'
+    ], function( $, modal) {
+        var options = {
+            type: 'popup',
+            responsive: true,
+            innerScroll: true,
+            title: 'Live Demo',
+        };
+
+        var popup = modal(options, $('#popup-demo-modal'));
+        $("#open-demo-popup").on('click',function(){ 
+            $("#popup-demo-modal").modal("openModal");
+        });
+
+
+        //calling common pop-up on click of every demo which is rendered using demofeature.phtml
+        $(".open-demo").on('click',function(){ 
+            $("#popup-demo-modal").modal("openModal");
+        });
+
+    }
+);
+</script>

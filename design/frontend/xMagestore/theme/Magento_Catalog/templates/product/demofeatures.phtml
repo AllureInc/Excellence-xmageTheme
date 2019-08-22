@@ -1,0 +1,9 @@
+<?php
+    // To get Display Extension name attribute form admin.
+    $helper        = $this->helper('xMagestore\Theme\Helper\Data');
+    $product       = $helper->getCurrentProduct();
+    $extensionName = $product->getDemoFeatures(); 
+?>
+<?php if(!empty($extensionName)): ?>
+    <?= __($extensionName) ?>
+<?php endif; ?>

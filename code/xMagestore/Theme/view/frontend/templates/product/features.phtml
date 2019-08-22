@@ -1,0 +1,7 @@
+<?php
+    $helper        = $this->helper('xMagestore\Theme\Helper\Data');
+    $product       = $helper->getCurrentProduct();
+    $featureDivision = $product->getModuleFeatures();
+
+    echo($featureDivision);
+?>

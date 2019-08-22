@@ -1,0 +1,76 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+<?php
+    $theme = $this->helper('Infortis\Base\Helper\Data');
+    $galleryImages = json_decode($block->getGalleryImagesJson(), true);
+    // echo "<pre>"; print_r($galleryImages); die;
+?>
+<div class="gallery-placeholder" data-gallery-role="gallery-placeholder">
+    <div class="slideshow-wrapper slider-arrows2 slider-pagination2 pagination-pos-bottom-centered">
+        <div id="product-image-slider" class="slideshow owl-carousel owl-theme" style="opacity: 1; display: block;">
+            <?php foreach ($galleryImages as $index => $galleryImage): ?>
+                <div class="item">
+                    <a data-fancybox="gallery" href="<?= $galleryImage['img'] ?>">
+                        <img src="<?= $galleryImage['img'] ?>" alt="<?= $galleryImage['caption'] ?>" title="<?= $galleryImage['caption'] ?>" />
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    requirejs(['jquery','owlcarousel', 'fancybox'], function(jQuery, owl, fancybox)
+    {
+        jQuery('.gallery-placeholder').click(function(e) {
+            console.log('ytestt');
+        });
+        jQuery(function($) {
+            var owl = $('#product-image-slider');
+            owl.owlCarousel({
+                navigationText: false,
+                addClassActive: true,
+                navigation: true,
+                singleItem: true,
+                loop:true,
+                margin:0,
+                responsiveClass:true,
+                afterMove: function() {
+                    owl.find('.owl-item.active [data-animate-in]').each(function() {
+                        $(this).addClass($(this).data('animate-in') + ' animated');
+                    });
+                },
+                beforeMove: function() {
+                    owl.find('.owl-item.active [data-animate-in]').each(function() {
+                        $(this).removeClass($(this).data('animate-in') + ' animated');
+                    });
+                }
+                
+            });
+        });
+    });
+</script>
+<style>
+.gallery-placeholder.full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    background: red;
+    z-index: 9999;
+    height: 100vh;
+}
+</style>

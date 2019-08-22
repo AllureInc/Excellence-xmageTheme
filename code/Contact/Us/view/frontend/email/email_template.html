@@ -1,0 +1,14 @@
+<!--@subject xMage-support@-->
+<!--@vars {
+"var data.comment":"xMage-support",
+"var data.email":"support@xmagestore.com",
+"var data.name":"XMageStore"
+} @-->
+
+
+{{template config_path="design/email/header_template"}}
+
+{{trans "Dear %name" name=$data.name}}
+{{trans "we received your request regarding %queryregarding" queryregarding=$data.requestType}}
+
+{{template config_path="design/email/footer_template"}}
